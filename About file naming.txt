@@ -1,0 +1,1 @@
+Files names are composed of a name (same or similar to name of exercise on codewars), a digit indicating the kyu level and an optional incomplete status indicator "i".
