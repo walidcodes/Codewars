@@ -3,7 +3,6 @@ function separateLiquids(glass) {
   if (glass[0]) {
     const layerLength = glass[0].length;
     let spilled = [].concat.apply([], glass);
-
     spilled = spilled
       .map((u) => {
         return { O: 1, A: 2, W: 3, H: 4 }[u];
@@ -16,5 +15,6 @@ function separateLiquids(glass) {
     while (spilled.length > 0)
       settledLiquid.push(spilled.splice(0, layerLength));
   }
+
   return settledLiquid;
 }
