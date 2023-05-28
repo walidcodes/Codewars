@@ -19,20 +19,38 @@ function buildMatchesTable(numberOfTeams) {
     console.log(`teamCheckObj[4].length is ${teamCheckObj[4].length}`);
     // while (teamsArr.length) {
     const rosterArr = teamsArr;
+    // CHECK THIS IF CONDITION AND THE COMMENtED OUT SECTION TO GO THROUGH ALL CASES.
+    // OTHERWISE WE HAVE GENERATED A ROUND SUCCESSFULLY
     if (!teamCheckObj[teamsArr[0]].length) {
       console.log(`clearing ${teamsArr[0]}`);
       teamsArr.shift();
     } else {
-      // while (rosterArr.length) {
-      console.log(`rosterArr.length is ${rosterArr.length}`);
-      match.push(rosterArr.shift());
-      console.log(`match first push is ${match}`);
-      for (const opponent in teamCheckObj[match[0]]) {
+      while (rosterArr.length) {
+        console.log(`rosterArr.length is ${rosterArr.length}`);
+        match.push(rosterArr.shift());
+        console.log(`match first push is ${match}`);
+        console.log(teamCheckObj[match[0]]);
+        let opponent;
+        for (let i = 0; i < teamCheckObj[match[0]].length; i++) {
+          console.log(`${roundsArr}, ${roundsArr.flat(1)}`);
+          if (roundsArr.flat().indexOf(teamCheckObj[match[0]][i]) === -1) {
+            opponent = teamCheckObj[match[0]][i];
+            break;
+          }
+        }
         console.log(`current opponent ${opponent}`);
         if (rosterArr.indexOf(opponent) > -1) {
           console.log(`index of opponent in rosterArr is found`);
-          match.push(rosterArr.splice(rosterArr.indexOf(opponent), 1));
-          console.log(`rosterArr after splice opponent`);
+          match.push(rosterArr.splice(rosterArr.indexOf(opponent), 1)[0]);
+          console.log(`match after second push ${match}`);
+          console.log(`rosterArr after splice opponent ${rosterArr}`);
+          console.log(`teamCheckObj[match[0]]: ${teamCheckObj[match[0]]}
+          match: ${match}
+          ${typeof match[1]}
+          teamCheckObj[match[0]].indexOf(match[1]) : ${teamCheckObj[
+            match[0]
+          ].indexOf(match[1])}
+          `);
           teamCheckObj[match[0]].splice(
             teamCheckObj[match[0]].indexOf(match[1]),
             1
@@ -43,12 +61,12 @@ function buildMatchesTable(numberOfTeams) {
             1
           );
           console.log(`teamObj ${match[1]} : ${teamCheckObj[match[1]]}`);
-          break;
         }
+        roundsArr.push(match);
+        console.log(roundsArr, "this is rounds");
+        match = [];
+        console.log(`${rosterArr.length} rosterArr after match push`);
       }
-      roundsArr.push(match);
-      match = [];
-      // }
       matrixArr.push(roundsArr);
     }
     // }
