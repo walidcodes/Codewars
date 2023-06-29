@@ -34,25 +34,25 @@
 
 // anki practice getters and setters
 
-class Refinery {
-  constructor(greetings, goodbyes) {
-    this._greetings = greetings;
-    this._goodbyes = goodbyes;
-  }
-  activate() {
-    console.log(
-      `when entering I said:${this._greetings} and when I left, I made sure to say: ${this._goodbyes}`
-    );
-  }
+// class Refinery {
+//   constructor(greetings, goodbyes) {
+//     this._greetings = greetings;
+//     this._goodbyes = goodbyes;
+//   }
+//   activate() {
+//     console.log(
+//       `when entering I said:${this._greetings} and when I left, I made sure to say: ${this._goodbyes}`
+//     );
+//   }
 
-  // get greetings() {
-  //   return this._greetings;
-  // }
+// get greetings() {
+//   return this._greetings;
+// }
 
-  // set greetings(value) {
-  //   if (typeof value === "string") this._greetings = value;
-  // }
-}
+// set greetings(value) {
+//   if (typeof value === "string") this._greetings = value;
+// }
+// }
 
 // function Demo(greetings, goodbyes) {
 //   let _greetings = greetings;
@@ -62,3 +62,11 @@ class Refinery {
 //     },
 //   });
 // }
+
+const ones = document.querySelectorAll("h1");
+
+Array.from(ones).forEach((h) => h.addEventListener("click", runs));
+
+function runs(click) {
+  if (click.target.innerHTML === "CodeWars") click.target.style.color = "red";
+}

@@ -1,7 +1,48 @@
 function ant(grid, column, row, n, dir = 0) {
+  console.log(grid, column, row, n, (dir = 0));
+  const pos = { x: column, y: row };
+  for (let i = 0; i < n; i++) {
+    dir = redir(grid[pos.y][pos.x], dir);
+    if (grid[pos.y][pos.x]) {
+      grid[pos.y][pos.x] = 0;
+    } else {
+      grid[pos.y][pos.x] = 1;
+    }
+    if (!dir) {
+      if (grid[pos.y - 1] === undefined) grid.unshift(grid[pos.y].fill(0));
+      else pos.y--;
+    } else if (dir === 1) {
+      if (grid[pos.y][pos.x + 1] === undefined)
+        grid.map((e) => {
+          e.push(0);
+          return e;
+        });
+      pos.x++;
+    } else if (dir === 2) {
+      if (grid[pos.y + 1] === undefined) grid.push(grid[pos.y].fill(0));
+      pos.y++;
+    } else {
+      if (grid[pos.y][pos.x - 1] === undefined)
+        grid.map((e) => {
+          e.unshift(0);
+          return e;
+        });
+      else pos.x--;
+    }
+  }
   return grid;
 }
 
+function redir(cellVal, dir) {
+  if (cellVal) {
+    dir++;
+    if (dir > 3) dir = 0;
+  } else {
+    dir--;
+    if (dir < 0) dir = 3;
+  }
+  return dir;
+}
 // parameters are a two dimensional grid represented as an array, the column position, row, n representing the total number of steps to be taken, and the direction the cursor is facing
 // result is the state of the grid after n steps according to the rules
 // example : ([[1]], 0, 0, 3, 0), [[0,1],[0,1]])
